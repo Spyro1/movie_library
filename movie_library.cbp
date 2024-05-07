@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="movie_library" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/movie_library" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/movie_library" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+		</Compiler>
+		<Unit filename="documentary_movie.cpp" />
+		<Unit filename="documentary_movie.h" />
+		<Unit filename="family_movie.cpp" />
+		<Unit filename="family_movie.h" />
+		<Unit filename="gtest_lite.h" />
+		<Unit filename="interface.cpp" />
+		<Unit filename="interface.h" />
+		<Unit filename="library.cpp" />
+		<Unit filename="library.h" />
+		<Unit filename="list.hpp" />
+		<Unit filename="log_out.cpp" />
+		<Unit filename="log_out.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="memtrace.cpp" />
+		<Unit filename="memtrace.h" />
+		<Unit filename="movie.cpp" />
+		<Unit filename="movie.h" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

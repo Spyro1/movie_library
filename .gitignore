@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+movie_library.depend
+movie_library.layout
