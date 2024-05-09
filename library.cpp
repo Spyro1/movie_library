@@ -4,8 +4,15 @@
 
 #include "memtrace.h"
 
+size_t Library::size_() const {
+    return size;
+}
+Movie& Library::list_member(int i) {
+    return list[i];
+}
 void Library::add(Movie& new_movie) {
-    //list.add(new_movie);
+    list.add(new_movie);
+    size++;
 }
 void Library::edit(string title) {
     /*list.search();
@@ -29,7 +36,6 @@ void Library::list_all() const {
 
     }*/
 }
-
 Library::~Library() {
 
 }

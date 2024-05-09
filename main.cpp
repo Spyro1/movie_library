@@ -4,7 +4,7 @@
 
 #include "gtest_lite.h"
 
-#include "interface.h"
+#include "menu.h"
 #include "library.h"
 
 #include "memtrace.h"
@@ -74,10 +74,12 @@ int main() {
 
 int main()
 {
-    print_start();
+    Library library;
+    Menu m1(library);
+    m1.print_start();
     bool run = true;
     while(run) {
-        run = menu();
+        run = m1.menu();
     }
     return 0;
 }

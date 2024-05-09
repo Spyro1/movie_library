@@ -10,6 +10,8 @@ private:
     List<Movie> list;
 public:
     Library(size_t siz = 0) : size(siz) {}
+    size_t size_() const;
+    Movie& list_member(int i = 0);
     void add(Movie& new_movie);
     void edit(string title);
     Movie* search(Genre genre) const;

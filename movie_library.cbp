@@ -37,16 +37,14 @@
 		<Unit filename="family_movie.cpp" />
 		<Unit filename="family_movie.h" />
 		<Unit filename="gtest_lite.h" />
-		<Unit filename="interface.cpp" />
-		<Unit filename="interface.h" />
 		<Unit filename="library.cpp" />
 		<Unit filename="library.h" />
 		<Unit filename="list.hpp" />
-		<Unit filename="log_out.cpp" />
-		<Unit filename="log_out.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="memtrace.cpp" />
 		<Unit filename="memtrace.h" />
+		<Unit filename="menu.cpp" />
+		<Unit filename="menu.h" />
 		<Unit filename="movie.cpp" />
 		<Unit filename="movie.h" />
 		<Extensions />

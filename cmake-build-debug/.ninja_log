@@ -1,0 +1,10 @@
+# ninja log v5
+8	381	7368733086438609	CMakeFiles/movie_library.dir/documentary_movie.cpp.obj	cc936e26a58b834f
+1	413	7368733086759291	CMakeFiles/movie_library.dir/main.cpp.obj	e1282781a45fc985
+4	391	7368734776856632	CMakeFiles/movie_library.dir/family_movie.cpp.obj	3ef549499274aad1
+40	395	7368734776906644	CMakeFiles/movie_library.dir/memtrace.cpp.obj	2a53e431640fda8d
+33	443	7368734777394931	CMakeFiles/movie_library.dir/movie.cpp.obj	9df7bef1ec9ba7b6
+11	448	7368734777444932	CMakeFiles/movie_library.dir/interface.cpp.obj	8e0da11acd03194c
+26	452	7368734777494923	CMakeFiles/movie_library.dir/log_out.cpp.obj	fe1940df03a6315a
+18	454	7368734777504985	CMakeFiles/movie_library.dir/library.cpp.obj	29b1e465baed93bb
+454	832	7368734781250624	movie_library.exe	20135eea9726dfe3

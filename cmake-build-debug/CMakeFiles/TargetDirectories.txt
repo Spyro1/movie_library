@@ -1,0 +1,3 @@
+C:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/cmake-build-debug/CMakeFiles/movie_library.dir
+C:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/cmake-build-debug/CMakeFiles/rebuild_cache.dir

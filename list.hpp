@@ -14,6 +14,16 @@ public:
     List<T>() {
         first = nullptr;
     }
+    T& operator[](int i) {
+        List_member* current = first->next;
+        for(int j = 0; j < i; j++) {
+            if (current == nullptr) {
+                throw std::out_of_range("Tulindexelt.");
+        }
+            current = current->next;
+        }
+        return current->data;
+    }
     void add(const T& dat) {
         List_member* newNode = new List_member;
         newNode->data = dat;

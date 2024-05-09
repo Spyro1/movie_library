@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 
+#include "library.h"
+
 using std::endl;
 using std::cout;
 using std::cin;
@@ -22,6 +24,23 @@ enum Menu_Options {
     LIST_ALL
 };
 
+class Menu {
+private:
+    Library library;
+public:
+    Menu(Library l) : library(l) {}
+    bool menu();
+    void print_start();
+    void print_menu();
+    bool function_selector(int menu_num);
+    int read_number_with_limits(const int min, const int max);
+    int get_current_year();
+    bool valid_string(string s);
+    bool add_movie();
+    bool edit_movie();
+    bool log_out();
+};
+/*
 class IOStreamInterface {
 public:
     virtual void write(const string& message) = 0;
@@ -90,27 +109,17 @@ public:
         }
     }
     void readLine(const string& container) override {
-        /*if (fileStream.is_open()) {
+        if (fileStream.is_open()) {
             std::string line;
             std::getline(fileStream, line);
             container = line;
-        }*/
+        }
     }
     ~FileInputStream() {
         if (fileStream.is_open()) {
             fileStream.close();
         }
     }
-};
-
-bool menu();
-
-void print_start();
-
-void print_menu();
-
-bool function_selector(int menu_num);
-
-int read_number_with_limits(const Menu_Options min, const Menu_Options max);
+};*/
 
 #endif // INTERFACE_H_INCLUDED
