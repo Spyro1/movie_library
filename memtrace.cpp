@@ -10,7 +10,9 @@ typo:       2019.
 *********************************/
 
 /*definialni kell, ha nem paracssorbol allitjuk be (-DMEMTRACE) */
+#ifndef MEMTRACE
 #define MEMTRACE
+#endif
 
 #ifdef _MSC_VER
 	#define _CRT_SECURE_NO_WARNINGS 1

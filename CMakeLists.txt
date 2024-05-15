@@ -8,13 +8,11 @@ documentary_movie.cpp
 documentary_movie.h
 family_movie.cpp
 family_movie.h
-interface.cpp
-interface.h
+menu.cpp
+menu.h
 library.cpp
 library.h
 list.hpp
-log_out.cpp
-log_out.h
 movie.cpp
 movie.h
 memtrace.cpp

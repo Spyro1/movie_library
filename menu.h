@@ -6,6 +6,8 @@
 #include <fstream>
 
 #include "library.h"
+#include "documentary_movie.h"
+#include "family_movie.h"
 
 using std::endl;
 using std::cout;
@@ -27,99 +29,30 @@ enum Menu_Options {
 class Menu {
 private:
     Library library;
+    std::ostream& out;
+    std::istream& in;
 public:
-    Menu(Library l) : library(l) {}
+    Menu(Library l, std::ostream& o = std::cout, std::istream& i = std::cin) : library(l), out(o), in(i) {}
     bool menu();
     void print_start();
     void print_menu();
     bool function_selector(int menu_num);
     int read_number_with_limits(const int min, const int max);
-    int get_current_year();
-    bool valid_string(string s);
+    static int get_current_year();
+    static bool valid_string(string s);
+    void edit_title(Movie& movie);
+    void edit_playtime(Movie& movie);
+    void edit_year(Movie& movie);
+    void edit_genre(Movie& movie);
+    void edit_age_limit(Family_movie& movie);
+    void edit_description(Documentary_movie& movie);
+    Movie& search_title(string title);
     bool add_movie();
     bool edit_movie();
-    bool log_out();
+    bool search_movie();
+    bool delete_movie();
+    bool list_all() const ;
+    bool log_out() const ;
 };
-/*
-class IOStreamInterface {
-public:
-    virtual void write(const string& message) = 0;
-    virtual void writeLine(const string& message) = 0;
-    virtual void read(const string& container) = 0;
-    virtual void readLine(const string& container) = 0;
-    virtual ~IOStreamInterface() = default;
-};
-
-class ConsoleOutputStream : public IOStreamInterface {
-public:
-    void write(const string& message) override {
-        cout << message;
-    }
-    void writeLine(const string& message) override {
-        cout << message << endl;
-    }
-};
-
-class ConsoleInputStream : public IOStreamInterface {
-public:
-    void read(const string& message) override {
-        //cin >> message;
-    }
-    void readLine(const string& message) override {
-        //cin >> message << endl;
-    }
-};
-
-class FileOutputStream : public IOStreamInterface {
-private:
-    ofstream fileStream;
-public:
-    FileOutputStream(const string& filename) {
-        fileStream.open(filename);
-        if (!fileStream.is_open()) {
-            cerr << "Error opening file: " << filename << endl;
-        }
-    }
-    void write(const char* data, std::streamsize size) {
-        if (fileStream.is_open()) {
-            fileStream.write(data, size);
-        }
-    }
-    void writeLine(const char* data, std::streamsize size) {
-        if (fileStream.is_open()) {
-            fileStream.write(data, size);
-            fileStream << endl;
-        }
-    }
-    ~FileOutputStream() {
-        if (fileStream.is_open()) {
-            fileStream.close();
-        }
-    }
-};
-
-class FileInputStream : public IOStreamInterface {
-private:
-    ifstream fileStream;
-public:
-    FileInputStream(const string& filename) {
-        fileStream.open(filename);
-        if (!fileStream.is_open()) {
-            cerr << "Error opening file: " << filename << endl;
-        }
-    }
-    void readLine(const string& container) override {
-        if (fileStream.is_open()) {
-            std::string line;
-            std::getline(fileStream, line);
-            container = line;
-        }
-    }
-    ~FileInputStream() {
-        if (fileStream.is_open()) {
-            fileStream.close();
-        }
-    }
-};*/
 
 #endif // INTERFACE_H_INCLUDED

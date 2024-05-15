@@ -15,9 +15,9 @@ using std::endl;
 
 //#define CPORTA
 
-#ifdef CPORTA
-
 int main() {
+    #ifdef CPORTA
+
     TEST(declaration, d) {
         EXPECT_NO_THROW(Movie m1);
         EXPECT_NO_THROW(Documentary_movie d1);
@@ -66,14 +66,10 @@ int main() {
         EXPECT_NO_THROW(library.edit(f1.title_()));
         EXPECT_NO_THROW(library.list_all());
     } END
-}
+    #endif // CPORTA
 
-#endif // CPORTA
+    #ifndef CPORTA
 
-#ifndef CPORTA
-
-int main()
-{
     Library library;
     Menu m1(library);
     m1.print_start();
@@ -82,6 +78,6 @@ int main()
         run = m1.menu();
     }
     return 0;
-}
 
-#endif // CPORTA
+    #endif // CPORTA
+}

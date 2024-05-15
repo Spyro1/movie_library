@@ -6,15 +6,20 @@ using std::string;
 enum Genre {
 ACTION, COMEDY, ROMANCE, DRAMA, HORROR, THRILLER, SCIFI, CRIME, WESTERN, DOCUMENTARY, FAMILY
 };
+enum Movie_type {
+MOVIE, DOCUMENTARY_MOVIE, FAMILY_MOVIE, DEFAULT
+};
 
 class Movie {
 private:
+    Movie_type type;
     string title;
     size_t playtime;
     size_t year;
     Genre genre;
 public:
-    Movie(string t = "", size_t p = 0, size_t y = 0, Genre g = ACTION) : title(t), playtime(p), year(y), genre(g) {}
+    Movie(Movie_type ty = MOVIE, string t = "", size_t p = 0, size_t y = 0, Genre g = ACTION) : type(ty), title(t), playtime(p), year(y), genre(g) {}
+    Movie_type type_() const;
     string title_() const;
     size_t playtime_() const;
     size_t year_() const;

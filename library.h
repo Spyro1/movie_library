@@ -1,6 +1,5 @@
 #ifndef TAR_H_INCLUDED
 #define TAR_H_INCLUDED
-
 #include "movie.h"
 #include "list.hpp"
 
@@ -11,15 +10,11 @@ private:
 public:
     Library(size_t siz = 0) : size(siz) {}
     size_t size_() const;
-    Movie& list_member(int i = 0);
+    Movie& list_member(int i = 0) ;
     void add(Movie& new_movie);
-    void edit(string title);
-    Movie* search(Genre genre) const;
-    Movie* search(std::string title) const;
-    Movie* search(int year) const;
     void del(Movie& delete_movie);
     void list_all() const;
-    ~Library();
+    //~Library();
 };
 
 #endif // TAR_H_INCLUDED

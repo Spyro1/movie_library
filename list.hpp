@@ -24,6 +24,16 @@ public:
         }
         return current->data;
     }
+    T operator[](int i) const {
+        List_member* current = first->next;
+        for(int j = 0; j < i; j++) {
+            if (current == nullptr) {
+                throw std::out_of_range("Tulindexelt.");
+            }
+            current = current->next;
+        }
+        return current->data;
+    }
     void add(const T& dat) {
         List_member* newNode = new List_member;
         newNode->data = dat;
@@ -38,7 +48,7 @@ public:
             current->next = newNode;
         }
     }
-    template<typename S>
+    /*template<typename S>
     T* search(S s) {
         List_member* current = first->next;
         while (current != nullptr) {
@@ -47,7 +57,7 @@ public:
             current = current->next;
         }
         return nullptr;
-    }
+    }*/
     void del(const T& dat) {
         List_member* current = first->next;
         List_member* prev = first;
@@ -62,7 +72,7 @@ public:
             current = current->next;
         }
     }
-    class iterator {
+    /*class iterator {
     private:
         List_member* iter;
     public:
@@ -104,7 +114,7 @@ public:
     }
     iterator end() {
         return iterator();
-    }
+    }*/
     ~List() {
         List_member* current = first;
         while(current != nullptr) {
