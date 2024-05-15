@@ -10,7 +10,9 @@ inclue-ok:  2017., 2018. 2019.
 
 #ifndef MEMTRACE_H
 #define MEMTRACE_H
+#ifndef MEMTRACE
 #define MEMTRACE
+#endif
 #if defined(MEMTRACE)
 
 /*ha definiálva van, akkor a hibakat ebbe a fajlba írja, egyébkent stderr-re*/

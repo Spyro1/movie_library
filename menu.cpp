@@ -43,12 +43,12 @@ bool Menu::function_selector(int menu_num) {
         run = add_movie(); break;
     case 2:
         run = edit_movie(); break;
-    /*case 3:
-        run = ; break;
+    case 3:
+        run = search_movie(); break;
     case 4:
-        run = ; break;
+        run = delete_movie(); break;
     case 5:
-        run = ; break;*/
+        run = list_all(); break;
     default:
         run = log_out(); break;
     }
@@ -68,7 +68,7 @@ int Menu::read_number_with_limits(const int min, const int max) {
             else throw "";
         }
         catch (...){
-            out << endl << "Hibas input (min: " << min << ", max: " << max << "). Valasztott menupont: ";
+            out << endl << "Hibas input (min: " << min << ", max: " << max << "). Valasztott menupont:" << endl;
         }
     }
     in.clear();
@@ -83,12 +83,12 @@ bool Menu::valid_string(string s) {
     for (size_t i = 0; i < s.size(); i++) {
         if (s[i] == ';')
             return false;
-        if (std::isspace(s[i]))
-            return false;
+        if (!std::isspace(s[i]))
+            return true;
     }
-    return true;
+    return false;
 }
-void Menu::edit_title(Movie& movie) {
+void Menu::edit_title(Movie* movie) {
     string new_title;
     while(true) {
         out << endl << "Cim:" << endl;
@@ -98,29 +98,29 @@ void Menu::edit_title(Movie& movie) {
         else
             break;
     }
-    movie.title_(new_title);
+    movie->title_(new_title);
 }
-void Menu::edit_playtime(Movie& movie) {
+void Menu::edit_playtime(Movie* movie) {
     out << "Lejatszasi ido:" <<endl;
     int new_playtime = read_number_with_limits(1, 1000);
-    movie.playtime_(new_playtime);
+    movie->playtime_(new_playtime);
 }
-void Menu::edit_year(Movie& movie) {
+void Menu::edit_year(Movie* movie) {
     out << "Kiadasi ev:" <<endl;
     int new_year = read_number_with_limits(1888, get_current_year());
-    movie.year_(new_year);
+    movie->year_(new_year);
 }
-void Menu::edit_genre(Movie& movie) {
+void Menu::edit_genre(Movie* movie) {
     out << "Mufaj:" <<endl;
     Genre new_genre = (Genre)read_number_with_limits(1, 11);
-    movie.genre_(new_genre);
+    movie->genre_(new_genre);
 }
-void Menu::edit_age_limit(Family_movie& movie) {
+void Menu::edit_age_limit(Family_movie* movie) {
     out << "Korhatar:" <<endl;
     int new_age_limit = read_number_with_limits(6, 16);
-    movie.age_limit_(new_age_limit);
+    movie->age_limit_(new_age_limit);
 }
-void Menu::edit_description(Documentary_movie& movie) {
+void Menu::edit_description(Documentary_movie* movie) {
     string new_description;
     while(true) {
         out << endl << "Leiras: " << endl;
@@ -130,40 +130,40 @@ void Menu::edit_description(Documentary_movie& movie) {
         else
             break;
     }
-    movie.description_(new_description);
+    movie->description_(new_description);
 }
-Movie& Menu::search_title(string title) {
-    int n = 0;
+Movie* Menu::search_title(string title) {
+    size_t n = 0;
     string* search_results = nullptr;
     for(size_t i = 0; i < library.size_(); i++) {
-        if(title.compare(0, title.size(), library.list_member(i).title_(), 0, title.size()) == 0) {
-            cout << n+1 << ".\t" << library.list_member(i).title_();
+        if(title.compare(0, title.size()-1, library.list_member(i)->title_(), 0, title.size()-1) == 0) {
+            cout << n+1 << ".\t" << library.list_member(i)->title_() << endl;
             if(search_results != nullptr) {
                 string* temp = new string[n+1];
                 for(int j = 0; j < n; j++)
                     temp[j] = search_results[j];
-                temp[n++] = library.list_member(i).title_();
+                temp[n++] = library.list_member(i)->title_();
                 delete[] search_results;
                 search_results = temp;
             }
             else {
-                search_results[n++] = library.list_member(i).title_();
+                search_results = new string[n+1];
+                search_results[n++] = library.list_member(i)->title_();
             }
         }
     }
-    Movie default_movie = Movie(DEFAULT);
     if(n == 0) {
         cout << "Nincs a keresesnek megfelelo film." << endl;
-        return default_movie;
+        return nullptr;
     }
     cout << "Valasztott film sorszama: " << endl;
     int searched_title = read_number_with_limits(1, (const int)n);
-    title = search_results[searched_title];
+    title = search_results[searched_title-1];
     for(size_t i = 0; i < library.size_(); i++) {
-        if(title == library.list_member(i).title_())
+        if(title == library.list_member(i)->title_())
             return library.list_member(i);
     }
-    return default_movie;
+    return nullptr;
 }
 bool Menu::add_movie() {
     string title;
@@ -185,45 +185,50 @@ bool Menu::add_movie() {
     for(int i = 0; i < 11; i++)
         out << i+1 << ".\t" << genre_names[i] << endl;
     out << "Film mufaja: " << endl;
-    Genre genre = static_cast<Genre>(read_number_with_limits(1, 11));
-    if(genre == 10) {
+    Genre genre = static_cast<Genre>(read_number_with_limits(1, 11)-1);
+    if(genre == 9) {
         string description;
         while(true) {
             out << endl << "Film rovid leirasa: " << endl;
-            in >> description;
+            getline(in, description);
             if(!valid_string(description))
                 out << "Hibas input (Legalabb 1 - szokoztol kulonbozo - karakter, nem tartalmazhat ';' karaktert).";
             else
                 break;
         }
-        Documentary_movie new_movie(DOCUMENTARY_MOVIE, title, playtime, release_year, genre, description);
+        Documentary_movie* new_movie = new Documentary_movie(DOCUMENTARY_MOVIE, title, playtime, release_year, genre, description);
         library.add(new_movie);
     }
     else if(genre == 11) {
         out << "Film korhatara: ";
         int age_limit = read_number_with_limits(6, 16);
-        Family_movie new_movie(FAMILY_MOVIE, title, playtime, release_year, genre, age_limit);
+        Family_movie* new_movie = new Family_movie(FAMILY_MOVIE, title, playtime, release_year, genre, age_limit);
         library.add(new_movie);
     }
     else {
-        Movie new_movie(MOVIE, title, playtime, release_year, genre);
+        Movie* new_movie = new Movie(MOVIE, title, playtime, release_year, genre);
         library.add(new_movie);
     }
     out << endl << "Sikeresen felvett film." << endl;
     return true;
 }
 bool Menu::edit_movie() {
+    if(library.size_() == 0) {
+        out << "Nincs felvett film." << endl;
+        return true;
+    }
     string title;
     out << endl << "Film cime (vagy cimenek kezdete): " << endl;
     in >> title;
-    Movie& searched_movie = search_title(title);
-    out << "1.\tCim: " << searched_movie.title_() << endl;
-    out << "2.\tLejatszasi ido: " << searched_movie.playtime_() << endl;
-    out << "3.\tKiadas eve: " << searched_movie.year_() << endl;
-    out << "4.\tMufaj: " << searched_movie.genre_() << endl;
+    Movie* searched_movie = search_title(title);
+    if(!searched_movie) return true;
+    out << "1.\tCim: " << searched_movie->title_() << endl;
+    out << "2.\tLejatszasi ido: " << searched_movie->playtime_() << endl;
+    out << "3.\tKiadas eve: " << searched_movie->year_() << endl;
+    out << "4.\tMufaj: " << searched_movie->genre_() << endl;
     int editable_data;
-    if(searched_movie.type_() == DOCUMENTARY_MOVIE) {
-        out << "5.\tRovid leiras: " << ((Documentary_movie*)searched_movie).description_() << endl;
+    if(searched_movie->type_() == DOCUMENTARY_MOVIE) {
+        out << "5.\tRovid leiras: " << ((Documentary_movie*)searched_movie)->description_() << endl;
         out << "Modositando adat sorszama: " << endl;
         editable_data = read_number_with_limits(1, 5);
         switch(editable_data) {
@@ -236,13 +241,13 @@ bool Menu::edit_movie() {
         case 4:
             edit_genre(searched_movie); break;
         case 5:
-            edit_description(searched_movie); break;
+            edit_description((Documentary_movie*)searched_movie); break;
         default:
             break;
         }
     }
-    else if(searched_movie.type_() == FAMILY_MOVIE) {
-        out << "5.\tKorhatar: " << ((Family_movie*)searched_movie).age_limit_() << endl;
+    else if(searched_movie->type_() == FAMILY_MOVIE) {
+        out << "5.\tKorhatar: " << ((Family_movie*)searched_movie)->age_limit_() << endl;
         out << "Modositando adat sorszama: " << endl;
         editable_data = read_number_with_limits(1, 5);
         switch(editable_data) {
@@ -255,7 +260,7 @@ bool Menu::edit_movie() {
             case 4:
                 edit_genre(searched_movie); break;
             case 5:
-                edit_age_limit(searched_movie); break;
+                edit_age_limit((Family_movie*)searched_movie); break;
             default:
                 break;
         }
@@ -279,22 +284,28 @@ bool Menu::edit_movie() {
     return true;
 }
 bool Menu::search_movie() {
+    if(library.size_() == 0) {
+        out << "Nincs felvett film." << endl;
+        return true;
+    }
     out << endl << "1.\tCim szerinti kereses" << endl;
-    out << endl << "2.\tMufaj szerinti kereses" << endl;
+    out << "2.\tMufaj szerinti kereses" << endl;
+    out << "Valasztott menupont: " << endl;
     int search_type = read_number_with_limits(1, 2);
     if(search_type == 1) {
         string title;
         out << endl << "Film cime (vagy cimenek kezdete): " << endl;
         in >> title;
-        Movie& searched_movie = search_title(title);
-        out << "1.\tCim: " << searched_movie.title_() << endl;
-        out << "2.\tLejatszasi ido: " << searched_movie.playtime_() << endl;
-        out << "3.\tKiadas eve: " << searched_movie.year_() << endl;
-        out << "4.\tMufaj: " << searched_movie.genre_() << endl;
-        if(searched_movie.type_() == DOCUMENTARY_MOVIE)
-            out << "5.\tRovid leiras: " << ((Documentary_movie*)searched_movie).description_() << endl;
-        else if(searched_movie.type_() == FAMILY_MOVIE)
-            out << "5.\tKorhatar: " << ((Family_movie*)searched_movie).age_limit_() << endl;
+        Movie* searched_movie = search_title(title);
+        if(!searched_movie) return true;
+        out << "1.\tCim: " << searched_movie->title_() << endl;
+        out << "2.\tLejatszasi ido: " << searched_movie->playtime_() << endl;
+        out << "3.\tKiadas eve: " << searched_movie->year_() << endl;
+        out << "4.\tMufaj: " << searched_movie->genre_() << endl;
+        if(searched_movie->type_() == DOCUMENTARY_MOVIE)
+            out << "5.\tRovid leiras: " << ((Documentary_movie*)searched_movie)->description_() << endl;
+        else if(searched_movie->type_() == FAMILY_MOVIE)
+            out << "5.\tKorhatar: " << ((Family_movie*)searched_movie)->age_limit_() << endl;
     }
     else {
         const string genre_names[] = {
@@ -307,18 +318,18 @@ bool Menu::search_movie() {
         int n = 0;
         string* search_results = nullptr;
         for(size_t i = 0; i < library.size_(); i++) {
-            if(library.list_member(i).genre_() == genre) {
-                cout << n+1 << ".\t" << library.list_member(i).title_();
+            if(library.list_member(i)->genre_() == genre) {
+                cout << n+1 << ".\t" << library.list_member(i)->title_();
                 if(search_results != nullptr) {
                     string* temp = new string[n+1];
                     for(int j = 0; j < n; j++)
                         temp[j] = search_results[j];
-                    temp[n++] = library.list_member(i).title_();
+                    temp[n++] = library.list_member(i)->title_();
                     delete[] search_results;
                     search_results = temp;
                 }
                 else {
-                    search_results[n++] = library.list_member(i).title_();
+                    search_results[n++] = library.list_member(i)->title_();
                 }
             }
         }
@@ -326,17 +337,25 @@ bool Menu::search_movie() {
     return true;
 }
 bool Menu::delete_movie() {
+    if(library.size_() == 0) {
+        out << "Nincs felvett film." << endl;
+        return true;
+    }
     string title;
     out << endl << "Film cime (vagy cimenek kezdete): " << endl;
     in >> title;
-    Movie& searched_movie = search_title(title);
+    Movie* searched_movie = search_title(title);
     library.del(searched_movie);
     out << endl << "Sikeresen torolt film." << endl;
     return true;
 }
-bool Menu::list_all() const {
+bool Menu::list_all() {
+    if(library.size_() == 0) {
+        out << "Nincs felvett film." << endl;
+        return true;
+    }
     for(size_t i = library.size_()-1; i >= 0; i--) {
-        out << library.list_member(i).title_() << endl;
+        out << library.list_member(i)->title_() << endl;
     }
     return true;
 }

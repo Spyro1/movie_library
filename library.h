@@ -6,14 +6,13 @@
 class Library {
 private:
     size_t size;
-    List<Movie> list;
+    List<Movie*> list;
 public:
     Library(size_t siz = 0) : size(siz) {}
     size_t size_() const;
-    Movie& list_member(int i = 0) ;
-    void add(Movie& new_movie);
-    void del(Movie& delete_movie);
-    void list_all() const;
+    Movie* list_member(size_t i = 0);
+    void add(Movie* new_movie);
+    void del(Movie* delete_movie);
     //~Library();
 };
 

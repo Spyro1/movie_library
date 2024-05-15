@@ -40,18 +40,18 @@ public:
     int read_number_with_limits(const int min, const int max);
     static int get_current_year();
     static bool valid_string(string s);
-    void edit_title(Movie& movie);
-    void edit_playtime(Movie& movie);
-    void edit_year(Movie& movie);
-    void edit_genre(Movie& movie);
-    void edit_age_limit(Family_movie& movie);
-    void edit_description(Documentary_movie& movie);
-    Movie& search_title(string title);
+    void edit_title(Movie* movie);
+    void edit_playtime(Movie* movie);
+    void edit_year(Movie* movie);
+    void edit_genre(Movie* movie);
+    void edit_age_limit(Family_movie* movie);
+    void edit_description(Documentary_movie* movie);
+    Movie* search_title(string title);
     bool add_movie();
     bool edit_movie();
     bool search_movie();
     bool delete_movie();
-    bool list_all() const ;
+    bool list_all() ;
     bool log_out() const ;
 };
 

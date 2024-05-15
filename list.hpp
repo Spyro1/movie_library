@@ -14,22 +14,11 @@ public:
     List<T>() {
         first = nullptr;
     }
-    T& operator[](int i) {
-        List_member* current = first->next;
-        for(int j = 0; j < i; j++) {
-            if (current == nullptr) {
+    T& operator[](size_t i) {
+        List_member* current = first;
+        for(size_t j = 0; j < i; j++) {
+            if (current == nullptr)
                 throw std::out_of_range("Tulindexelt.");
-        }
-            current = current->next;
-        }
-        return current->data;
-    }
-    T operator[](int i) const {
-        List_member* current = first->next;
-        for(int j = 0; j < i; j++) {
-            if (current == nullptr) {
-                throw std::out_of_range("Tulindexelt.");
-            }
             current = current->next;
         }
         return current->data;
@@ -38,8 +27,9 @@ public:
         List_member* newNode = new List_member;
         newNode->data = dat;
         newNode->next = nullptr;
-        if (first->next == nullptr)
-            first->next = newNode;
+        if(first == nullptr)
+            first = newNode;
+
         else {
             List_member* current = first->next;
             while (current->next != nullptr) {
@@ -48,16 +38,6 @@ public:
             current->next = newNode;
         }
     }
-    /*template<typename S>
-    T* search(S s) {
-        List_member* current = first->next;
-        while (current != nullptr) {
-            if (current->data == s)
-                return &current->data;
-            current = current->next;
-        }
-        return nullptr;
-    }*/
     void del(const T& dat) {
         List_member* current = first->next;
         List_member* prev = first;
@@ -72,49 +52,6 @@ public:
             current = current->next;
         }
     }
-    /*class iterator {
-    private:
-        List_member* iter;
-    public:
-        iterator() : iter(nullptr) {}
-        iterator(const List& list) : iter(list.first) {
-            if(iter->first = nullptr)
-                iter = nullptr;
-        }
-        iterator& operator++() {
-            if(iter != nullptr) {
-                iter = iter->next;
-                if(iter->next == nullptr)
-                    iter = nullptr;
-            }
-            return *this;
-        }
-        iterator operator++(int) {
-            iterator temp = *this;
-            operator++();
-            return temp;
-        }
-        bool operator!=(const iterator &i) const {
-            return iter!=i.iter;
-        }
-        T* operator*() {
-            if(iter != nullptr)
-                return iter->data;
-            else
-                throw "Nincs adat, hibas.";
-        }
-        T* operator->() {
-            if(iter != nullptr)
-                return &iter->data;
-            throw "Nincs adat, hibas.";
-        }
-    };
-    iterator begin() {
-        return iterator(*this);
-    }
-    iterator end() {
-        return iterator();
-    }*/
     ~List() {
         List_member* current = first;
         while(current != nullptr) {
