@@ -1,6 +1,8 @@
 #ifndef FILM_H_INCLUDED
 #define FILM_H_INCLUDED
 
+#include "memtrace.h"
+
 using std::string;
 
 enum Genre {
@@ -18,7 +20,8 @@ private:
     size_t year;
     Genre genre;
 public:
-    Movie(Movie_type ty = MOVIE, string t = "", size_t p = 0, size_t y = 0, Genre g = ACTION) : type(ty), title(t), playtime(p), year(y), genre(g) {}
+    Movie(Movie_type ty = MOVIE, string t = "", size_t p = 0, size_t y = 0, Genre g = ACTION) : type(ty),\
+          title(t), playtime(p), year(y), genre(g) {}
     Movie_type type_() const;
     string title_() const;
     size_t playtime_() const;

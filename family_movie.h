@@ -3,8 +3,9 @@
 
 #include "movie.h"
 
+#include "memtrace.h"
+
 class Family_movie : public Movie {
-private:
     size_t age_limit;
 public:
     Family_movie(Movie_type ty = FAMILY_MOVIE, string t = "", size_t p = 0, size_t y = 0,\

@@ -69,11 +69,11 @@ int main() {
     #ifndef CPORTA
 
     Library library;
-    Menu m1(library);
-    m1.print_start();
+    Menu m(library);
+    m.print_start();
     bool run = true;
     while(run) {
-        run = m1.menu();
+        run = m.menu();
     }
     return 0;
 

@@ -9,37 +9,28 @@
 #include "documentary_movie.h"
 #include "family_movie.h"
 
+#include "memtrace.h"
+
 using std::endl;
-using std::cout;
-using std::cin;
-using std::string;
-using std::cerr;
-using std::ofstream;
-using std::ifstream;
 
 enum Menu_Options {
-    LOG_OUT,
-    ADD,
-    EDIT,
-    SEARCH,
-    DELETE,
-    LIST_ALL
+    LOG_OUT, ADD, EDIT, SEARCH, DELETE, LIST_ALL
 };
-
 class Menu {
-private:
     Library library;
     std::ostream& out;
     std::istream& in;
 public:
     Menu(Library l, std::ostream& o = std::cout, std::istream& i = std::cin) : library(l), out(o), in(i) {}
+    static const string genre_names[];
     bool menu();
     void print_start();
     void print_menu();
-    bool function_selector(int menu_num);
+    bool function_selector(Menu_Options menu_num);
     int read_number_with_limits(const int min, const int max);
     static int get_current_year();
     static bool valid_string(string s);
+    bool unique_title(string title);
     void edit_title(Movie* movie);
     void edit_playtime(Movie* movie);
     void edit_year(Movie* movie);

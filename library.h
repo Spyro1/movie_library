@@ -1,19 +1,20 @@
 #ifndef TAR_H_INCLUDED
 #define TAR_H_INCLUDED
+
 #include "movie.h"
 #include "list.hpp"
 
+#include "memtrace.h"
+
 class Library {
-private:
-    size_t size;
     List<Movie*> list;
+    size_t size;
 public:
-    Library(size_t siz = 0) : size(siz) {}
+    Library() : list(), size(list.size_()) {}
     size_t size_() const;
     Movie* list_member(size_t i = 0);
     void add(Movie* new_movie);
     void del(Movie* delete_movie);
-    //~Library();
 };
 
 #endif // TAR_H_INCLUDED

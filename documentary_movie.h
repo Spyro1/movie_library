@@ -3,8 +3,9 @@
 
 #include "movie.h"
 
+#include "memtrace.h"
+
 class Documentary_movie : public Movie {
-private:
     string description;
 public:
     Documentary_movie(Movie_type ty = DOCUMENTARY_MOVIE, string t = "", size_t p = 0, size_t y = 0,\

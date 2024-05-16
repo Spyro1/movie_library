@@ -1,20 +1,26 @@
 #ifndef LIST_HPP_INCLUDED
 #define LIST_HPP_INCLUDED
 
+#include "memtrace.h"
+
 template<typename T>
 class List {
-private:
     struct List_member {
         T data;
         List_member* next;
-        List_member(List_member* n = nullptr) : next(n) {}
+        List_member() : next(nullptr) {}
+        ~List_member() { delete data; }
     };
     List_member* first;
+    size_t size;
 public:
     List<T>() {
         first = nullptr;
+        size = 0;
     }
+    size_t size_() { return size; }
     T& operator[](size_t i) {
+        if(i > size) throw std::out_of_range("Tulindexelt.");
         List_member* current = first;
         for(size_t j = 0; j < i; j++) {
             if (current == nullptr)
@@ -23,25 +29,32 @@ public:
         }
         return current->data;
     }
-    void add(const T& dat) {
-        List_member* newNode = new List_member;
-        newNode->data = dat;
-        newNode->next = nullptr;
+    void add(const T dat) {
+        List_member* new_node = new List_member;
+        new_node->data = dat;
+        new_node->next = nullptr;
         if(first == nullptr)
-            first = newNode;
-
+            first = new_node;
         else {
-            List_member* current = first->next;
+            List_member* current = first;
             while (current->next != nullptr) {
                 current = current->next;
             }
-            current->next = newNode;
+            current->next = new_node;
         }
+        new_node->next = nullptr;
+        size++;
     }
-    void del(const T& dat) {
+    void del(const T dat) {
+        if(first->data == dat) {
+            List_member* temp = first->next;
+            delete first;
+            first = temp;
+            size--;
+            return;
+        }
         List_member* current = first->next;
         List_member* prev = first;
-
         while (current != nullptr) {
             if (current->data == dat) {
                 prev->next = current->next;
@@ -51,6 +64,7 @@ public:
             prev = current;
             current = current->next;
         }
+        size--;
     }
     ~List() {
         List_member* current = first;
