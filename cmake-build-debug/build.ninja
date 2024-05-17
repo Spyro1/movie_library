@@ -70,13 +70,6 @@ build CMakeFiles/movie_library.dir/family_movie.cpp.obj: CXX_COMPILER__movie_lib
   OBJECT_DIR = CMakeFiles\movie_library.dir
   OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
 
-build CMakeFiles/movie_library.dir/menu.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/menu.cpp || cmake_object_order_depends_target_movie_library
-  DEFINES = -DMEMTRACE
-  DEP_FILE = CMakeFiles\movie_library.dir\menu.cpp.obj.d
-  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\movie_library.dir
-  OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
-
 build CMakeFiles/movie_library.dir/library.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/library.cpp || cmake_object_order_depends_target_movie_library
   DEFINES = -DMEMTRACE
   DEP_FILE = CMakeFiles\movie_library.dir\library.cpp.obj.d
@@ -84,16 +77,23 @@ build CMakeFiles/movie_library.dir/library.cpp.obj: CXX_COMPILER__movie_library_
   OBJECT_DIR = CMakeFiles\movie_library.dir
   OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
 
-build CMakeFiles/movie_library.dir/movie.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/movie.cpp || cmake_object_order_depends_target_movie_library
+build CMakeFiles/movie_library.dir/memtrace.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/memtrace.cpp || cmake_object_order_depends_target_movie_library
   DEFINES = -DMEMTRACE
-  DEP_FILE = CMakeFiles\movie_library.dir\movie.cpp.obj.d
+  DEP_FILE = CMakeFiles\movie_library.dir\memtrace.cpp.obj.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\movie_library.dir
   OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
 
-build CMakeFiles/movie_library.dir/memtrace.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/memtrace.cpp || cmake_object_order_depends_target_movie_library
+build CMakeFiles/movie_library.dir/menu.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/menu.cpp || cmake_object_order_depends_target_movie_library
   DEFINES = -DMEMTRACE
-  DEP_FILE = CMakeFiles\movie_library.dir\memtrace.cpp.obj.d
+  DEP_FILE = CMakeFiles\movie_library.dir\menu.cpp.obj.d
+  FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\movie_library.dir
+  OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
+
+build CMakeFiles/movie_library.dir/movie.cpp.obj: CXX_COMPILER__movie_library_unscanned_Debug C$:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/movie.cpp || cmake_object_order_depends_target_movie_library
+  DEFINES = -DMEMTRACE
+  DEP_FILE = CMakeFiles\movie_library.dir\movie.cpp.obj.d
   FLAGS = -g -std=gnu++11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\movie_library.dir
   OBJECT_FILE_DIR = CMakeFiles\movie_library.dir
@@ -106,7 +106,7 @@ build CMakeFiles/movie_library.dir/memtrace.cpp.obj: CXX_COMPILER__movie_library
 #############################################
 # Link the executable movie_library.exe
 
-build movie_library.exe: CXX_EXECUTABLE_LINKER__movie_library_Debug CMakeFiles/movie_library.dir/main.cpp.obj CMakeFiles/movie_library.dir/documentary_movie.cpp.obj CMakeFiles/movie_library.dir/family_movie.cpp.obj CMakeFiles/movie_library.dir/menu.cpp.obj CMakeFiles/movie_library.dir/library.cpp.obj CMakeFiles/movie_library.dir/movie.cpp.obj CMakeFiles/movie_library.dir/memtrace.cpp.obj
+build movie_library.exe: CXX_EXECUTABLE_LINKER__movie_library_Debug CMakeFiles/movie_library.dir/main.cpp.obj CMakeFiles/movie_library.dir/documentary_movie.cpp.obj CMakeFiles/movie_library.dir/family_movie.cpp.obj CMakeFiles/movie_library.dir/library.cpp.obj CMakeFiles/movie_library.dir/memtrace.cpp.obj CMakeFiles/movie_library.dir/menu.cpp.obj CMakeFiles/movie_library.dir/movie.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\movie_library.dir

@@ -64,16 +64,17 @@ int main() {
         EXPECT_NO_THROW(library.edit(f1.title_()));
         EXPECT_NO_THROW(library.list_all());
     } END
+
     #endif // CPORTA
 
     #ifndef CPORTA
 
     Library library;
-    Menu m(library);
-    m.print_start();
+    Menu menu(library);
+    menu.print_start();
     bool run = true;
     while(run) {
-        run = m.menu();
+        run = menu.menu();
     }
     return 0;
 

@@ -6,7 +6,7 @@
 
 #include "memtrace.h"
 
-class Library {
+class Library : public Serializable {
     List<Movie*> list;
     size_t size;
 public:
@@ -15,6 +15,8 @@ public:
     Movie* list_member(size_t i = 0);
     void add(Movie* new_movie);
     void del(Movie* delete_movie);
+    void read_from_file(std::ifstream& ifs, char s);
+    void write_to_file(std::ofstream& ofs, char s);
 };
 
 #endif // TAR_H_INCLUDED

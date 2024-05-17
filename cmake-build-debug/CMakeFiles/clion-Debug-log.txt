@@ -1,4 +1,4 @@
 C:\Users\pferr\Downloads\CLion-2024.1.1.win\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/pferr/Downloads/CLion-2024.1.1.win/bin/ninja/win/x64/ninja.exe -G Ninja -S C:\Users\pferr\OneDrive\Dokumentumok\UNI\prog2\NHF\movie_library -B C:\Users\pferr\OneDrive\Dokumentumok\UNI\prog2\NHF\movie_library\cmake-build-debug
--- Configuring done (1.2s)
+-- Configuring done (1.0s)
 -- Generating done (0.0s)
 -- Build files have been written to: C:/Users/pferr/OneDrive/Dokumentumok/UNI/prog2/NHF/movie_library/cmake-build-debug
