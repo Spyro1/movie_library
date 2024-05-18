@@ -56,8 +56,14 @@ void Movie::write(std::ostream& os) const {
     os << "4.\tMufaj: " << Movie::genre_names[genre] << endl;
 }
 void Movie::read_from_file(std::ifstream& ifs, char s) {
-    ifs  >> s >> title >> s >> playtime >> s >> year >> s\
-        >> reinterpret_cast<char*>(genre) >> s;
+    char i;
+    ifs >> s;
+    while(ifs >> i && i != s) {
+        title += i;
+    }
+    int g;
+    ifs >> playtime >> i >> year >> i >> g >> i;
+    genre = (Genre)g;
 }
 void Movie::write_to_file(std::ofstream& ofs, char s) const{
     ofs << type << s << title << s << playtime << s << year << s << genre << s << endl;

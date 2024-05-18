@@ -322,6 +322,9 @@ int Menu::edit_movie() {
                 return 1;
         }
     }
+    std::ofstream ofs ("movie_library.txt");
+    library.write_to_file(ofs, ';');
+    ofs.close();
     out << endl << "Sikeresen modositott film." << endl;
     return 2;
 }
@@ -400,6 +403,9 @@ int Menu::delete_movie() {
         return 3;
     }
     library.del(searched_movie);
+    std::ofstream ofs ("movie_library.txt");
+    library.write_to_file(ofs, ';');
+    ofs.close();
     out << endl << "Sikeresen torolt film." << endl;
     return 2;
 }

@@ -5,9 +5,9 @@
 
 class Serializable {
 public:
-    virtual void write(std::ostream& os) const;
+    virtual void write(std::ostream& os) const {}
     virtual void read_from_file(std::ifstream& ifs, char s) = 0;
-    virtual void write_to_file(std::ofstream& ofs, char s) const;
+    virtual void write_to_file(std::ofstream& ofs, char s) const {}
     virtual ~Serializable() {}
 };
 

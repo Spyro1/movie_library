@@ -70,6 +70,9 @@ int main() {
     #ifndef CPORTA
 
     Library library;
+    std::ifstream ifs ("movie_library.txt");
+    library.read_from_file(ifs, ';');
+    ifs.close();
     Menu menu(library);
     menu.print_start();
     bool run = true;

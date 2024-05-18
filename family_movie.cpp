@@ -20,8 +20,14 @@ void Family_movie::write(std::ostream& os) const {
     os << "5.\tKorhatar: " << age_limit << endl;
 }
 void Family_movie::read_from_file(std::ifstream& ifs, char s) {
-    ifs >> s >> title >> s >> playtime >> s >> year >> s\
-        >> reinterpret_cast<char*>(genre) >> age_limit >> s;
+    char i;
+    ifs >> s;
+    while(ifs >> i && i != s) {
+        title += i;
+    }
+    int g;
+    ifs >> playtime >> i >> year >> i >> g >> i >> age_limit >> i;
+    genre = (Genre)g;
 }
 void Family_movie::write_to_file(std::ofstream& ofs, char s) const {
     ofs << type << s << title << s << playtime << s << year << s << genre << s << age_limit << s << endl;

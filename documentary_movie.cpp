@@ -20,8 +20,17 @@ void Documentary_movie::write(std::ostream& os) const {
     os << "5.\tRovid leiras: " << description << endl;
 }
 void Documentary_movie::read_from_file(std::ifstream& ifs, char s) {
-    ifs >> s >> title >> s >> playtime >> s >> year >> s\
-        >> reinterpret_cast<char*>(genre) >> description >> s;
+    char i;
+    ifs >> s;
+    while(ifs >> i && i != s) {
+        title += i;
+    }
+    int g;
+    ifs >> playtime >> i >> year >> i >> g >> i;
+    genre = (Genre)g;
+    while(ifs >> i && i != s) {
+        description += i;
+    }
 }
 void Documentary_movie::write_to_file(std::ofstream& ofs, char s) const {
     ofs << type << s << title << s << playtime << s << year << s << genre << s << description << s << endl;

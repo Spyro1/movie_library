@@ -11,10 +11,11 @@ size_t Library::size_() const {
 }
 Movie* Library::list_member(size_t i) {
     try {
+        if(size != list.size_()) throw "rossz";
         return list[i];
     }
     catch(...) {
-        return nullptr;
+        throw "indexeles nem sikerult a list_member()-ben";
     }
 }
 void Library::add(Movie* new_movie) {
@@ -26,15 +27,14 @@ void Library::del(Movie* delete_movie) {
     size--;
 }
 void Library::read_from_file(std::ifstream& ifs, char s) {
-    char movie_type;
-    for(size_t i = 0; i < size_(); i++) {
-        ifs >> movie_type;
-        if(movie_type == 0) {
+    char movie_type = ' ';
+    while(ifs >> movie_type) {
+        if(movie_type == '0') {
             Movie* new_movie = new Movie(MOVIE);
             new_movie->read_from_file(ifs, ';');
             add(new_movie);
         }
-        else if(movie_type == 1) {
+        else if(movie_type == '1') {
             Documentary_movie* new_movie = new Documentary_movie(DOCUMENTARY_MOVIE);
             new_movie->read_from_file(ifs, ';');
             add(new_movie);
