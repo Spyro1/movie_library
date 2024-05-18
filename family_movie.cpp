@@ -21,8 +21,8 @@ void Family_movie::write(std::ostream& os) const {
 }
 void Family_movie::read_from_file(std::ifstream& ifs, char s) {
     char i;
-    ifs >> s;
-    while(ifs >> i && i != s) {
+    ifs >> i;
+    while(ifs.get(i) && i != s) { // a >> leveszi a spaceket, helyette get
         title += i;
     }
     int g;

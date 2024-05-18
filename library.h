@@ -8,9 +8,10 @@
 
 class Library : public Serializable {
     List<Movie*> list;
-    size_t size;
+//    size_t size = 0; // Nem kell, listának van már
 public:
-    Library() : list(), size(list.size_()) {}
+    Library() : list()/*, size(list.size())*/ {}
+    ~Library();
     size_t size_() const;
     Movie* list_member(size_t i = 0);
     void add(Movie* new_movie);

@@ -17,11 +17,11 @@ enum Menu_Options {
     LOG_OUT, ADD, EDIT, SEARCH, DELETE, LIST_ALL
 };
 class Menu {
-    Library library;
+    Library& library; // Referencia hiányzott!!!
     std::ostream& out;
     std::istream& in;
 public:
-    Menu(Library l, std::ostream& o = std::cout, std::istream& i = std::cin) : library(l), out(o), in(i) {}
+    Menu(Library& l, std::ostream& o = std::cout, std::istream& i = std::cin) : library(l), out(o), in(i) {}
     bool menu();
     void print_start();
     void print_menu();

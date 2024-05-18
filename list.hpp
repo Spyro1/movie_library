@@ -9,18 +9,18 @@ class List {
         T data;
         List_member* next;
         List_member() : next(nullptr) {}
-        ~List_member() { delete data; }
+//        ~List_member() { delete data; }
     };
     List_member* first;
-    size_t size;
+    size_t size_; // A külső function neve legyen inkább sima size()
 public:
     List<T>() {
         first = nullptr;
-        size = 0;
+        size_ = 0;
     }
-    size_t size_() { return size; }
+    size_t size() const { return size_; }
     T& operator[](size_t i) {
-        if(i > size) throw std::out_of_range("Tulindexelt.");
+        if(i >= size_) throw std::out_of_range("Tulindexelt.");
         List_member* current = first;
         for(size_t j = 0; j < i; j++) {
             if (current == nullptr)
@@ -32,7 +32,7 @@ public:
     void add(const T dat) {
         List_member* new_node = new List_member;
         new_node->data = dat;
-        new_node->next = nullptr;
+//        new_node->next = nullptr;
         if(first == nullptr)
             first = new_node;
         else {
@@ -42,15 +42,15 @@ public:
             }
             current->next = new_node;
         }
-        new_node->next = nullptr;
-        size++;
+//        new_node->next = nullptr;
+        size_++;
     }
     void del(const T dat) {
         if(first->data == dat) {
             List_member* temp = first->next;
             delete first;
             first = temp;
-            size--;
+            size_--;
             return;
         }
         List_member* current = first->next;
@@ -64,7 +64,7 @@ public:
             prev = current;
             current = current->next;
         }
-        size--;
+        size_--;
     }
     ~List() {
         List_member* current = first;
